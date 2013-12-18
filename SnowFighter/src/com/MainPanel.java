@@ -17,45 +17,45 @@ import obj.Snow;
 @SuppressWarnings("serial")
 public class MainPanel extends JPanel {
 
-	// ³ª
+	// í”Œë ˆì´ì–´
 	public Player player = new Player();
-	// »ó´ëÆí
+	// ìƒëŒ€í¸
 	public Player opponent = new Player();
 
-	// ³»°¡ ´øÁø ´«
+	// ë‚´ê°€ ë˜ì§€ëŠ” ëˆˆ
 	public List<Snow> snows = new LinkedList<Snow>();
-	// »ó´ëÆíÀÌ ´øÁø ´«
+	// ìƒëŒ€ë°©ì´ ë˜ì§€ëŠ” ëˆˆ
 	public List<Snow> enemySnows = new LinkedList<Snow>();
 
 	Timer timer;
 
 	public MainPanel() {
 
-		// ¸ŞÀÎ·çÇÁ¸¦ µ¹¸°´Ù
+		// ì£¼ê¸°ì  ì‹¤í–‰ë¡œì§
 		ActionListener listener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// ¾Ö´Ï¸ŞÀÌ¼Ç ´Ù½Ã ±×¸®°í
+				// ë‹¤ì‹œ ê·¸ë¦¬ê¸° -> paintComponentë¥¼ ì‹¤í–‰í•œë‹¤
 				repaint();
-				// ´«¿¡ °ü·ÃµÈ ·ÎÁ÷µé
+				// ëˆˆ ì›€ì§ì´ê¸°
 				for (Snow snow : snows) {
 					snow.increase();
 				}
 			}
 		};
 
-		// Å¸ÀÌ¸Ó¿¡ ¸ÂÃç¼­ ·çÇÁ¸¦ µ¹¸²(ÇöÀç 180ms¸¶´Ù)
+		// ì£¼ê¸°ì ìœ¼ë¡œ ì‹¤í–‰ (í˜„ì¬ 180msë§ˆë‹¤)
 		timer = new Timer(180, listener);
 		timer.start();
 
-		// ²®´ë±â ¾º¿ì°í
+		// ì™¸ê³½ì„ 
 		setBorder(BorderFactory.createLineBorder(Color.black));
 
-		// Å°°ü·Ã ¼ÂÆÃ
+		// í‚¤ì„¤ì •
 		new KeySetting(this);
 	}
 
-	// ui¸¦ ±×¸®´Â°÷
+	// í™”ë©´ ë¦¬í”„ë ˆì‰¬
 	public void paintComponent(Graphics g) {
 		System.out.println("paintComponent");
 		super.paintComponent(g);

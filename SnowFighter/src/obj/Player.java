@@ -41,7 +41,7 @@ public class Player {
 		g.drawRect(xPos, yPos, width, height);
 	}
 
-	// ÇÃ·¹ÀÌ¾î ÀÌµ¿
+	// ì´ë™
 	public void move(int dx, int dy) {
 		this.xPos += dx;
 		this.yPos += dy;

@@ -14,7 +14,7 @@ public class Main {
 		});
 	}
 
-	// GUI»ı¼º
+	// GUI í™”ë©´ ìƒì„±
 	private static void createAndShowGUI() {
 		JFrame f = new JFrame("Snow Fighter");
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
