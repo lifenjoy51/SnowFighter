@@ -62,5 +62,63 @@ public class KeySetting {
 				panel.player.move(0, 1);
 			}
 		});
+		
+		
+		
+		
+		
+		
+		/**
+		 * 상대편 컨트롤
+		 */
+		panel.getInputMap().put(KeyStroke.getKeyStroke('t'), "TAB key");
+		panel.getActionMap().put("TAB key", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				System.out.println("TAB!!");
+				Snow snow = new Snow(panel.opponent.getX(), panel.opponent.getY(), 5);
+				panel.enemySnows.add(snow);
+			}
+		});
+
+		//왼쪽
+		panel.getInputMap().put(KeyStroke.getKeyStroke('a'), "a key");
+		panel.getActionMap().put("a key", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				System.out.println("a!!");
+				panel.opponent.move(-1, 0);
+			}
+		});
+
+		//오른쪽
+		panel.getInputMap().put(KeyStroke.getKeyStroke('d'), "d key");
+		panel.getActionMap().put("d key", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				System.out.println("d!!");
+				panel.opponent.move(1, 0);
+			}
+		});
+		
+		//위로
+		panel.getInputMap().put(KeyStroke.getKeyStroke('w'), "w key");
+		panel.getActionMap().put("w key", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				System.out.println("w!!");
+				panel.opponent.move(0, -1);
+			}
+		});
+
+		//아래로
+		panel.getInputMap().put(KeyStroke.getKeyStroke('s'), "s key");
+		panel.getActionMap().put("s key", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				System.out.println("DOWN!!");
+				panel.opponent.move(0, 1);
+			}
+		});
 	}
 }
