@@ -2,8 +2,6 @@ package obj;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Player {
 

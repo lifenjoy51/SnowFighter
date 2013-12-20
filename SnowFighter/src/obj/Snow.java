@@ -15,7 +15,8 @@ public class Snow {
 	private int height = 10;
 	private int speed = 0;
 
-	public Snow(Player owner, int speed) {
+	public Snow(Player owner, String speedStr) {
+		int speed = Integer.parseInt(speedStr);
 		this.owner = owner;
 		this.xPos = owner.getX();
 		this.yPos = owner.getY();
@@ -42,9 +43,9 @@ public class Snow {
 			int dx = xPos - player.getX();
 			int dy = yPos - player.getY();
 			int dst = (int) Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-			System.out.println(player.getSize());
-			if (dst <= player.getSize()) {
-				System.out.println(dst);
+			//System.out.println(player.getSize());
+			if (dst <= player.getSize()/2) {
+				//System.out.println(dst);
 				player.isBeaten(this);
 				snows.remove(this);
 			} else {

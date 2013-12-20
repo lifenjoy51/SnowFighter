@@ -1,6 +1,7 @@
 package com;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
@@ -21,9 +22,19 @@ public class KeySetting {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("SPACE!!");
-				Snow snow = new Snow(p1, 5);
-				panel.snows.add(snow);
-				System.out.println();
+				
+				String command = "throw";
+				String player = "p1";
+				String snowSpeed = "2";
+				
+				String params = command + "^" + player + "^" + snowSpeed;
+				
+				try {
+					panel.conn.write(params);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
 			}
 		});
 
@@ -33,7 +44,19 @@ public class KeySetting {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("LEFT!!");
-				p1.move(-1, 0);
+				
+				String command = "move";
+				String player = "p1";
+				String dx = "-1";
+				String dy = "0";
+				
+				String params = command + "^" + player + "^" + dx + "^" + dy;
+				
+				try {
+					panel.conn.write(params);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -43,7 +66,19 @@ public class KeySetting {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("RIGHT!!");
-				p1.move(1, 0);
+				
+				String command = "move";
+				String player = "p1";
+				String dx = "1";
+				String dy = "0";
+				
+				String params = command + "^" + player + "^" + dx + "^" + dy;
+				
+				try {
+					panel.conn.write(params);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -53,7 +88,19 @@ public class KeySetting {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("UP!!");
-				p1.move(0, -1);
+				
+				String command = "move";
+				String player = "p1";
+				String dx = "0";
+				String dy = "-1";
+				
+				String params = command + "^" + player + "^" + dx + "^" + dy;
+				
+				try {
+					panel.conn.write(params);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -63,7 +110,19 @@ public class KeySetting {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("DOWN!!");
-				p1.move(0, 1);
+				
+				String command = "move";
+				String player = "p1";
+				String dx = "0";
+				String dy = "1";
+				
+				String params = command + "^" + player + "^" + dx + "^" + dy;
+				
+				try {
+					panel.conn.write(params);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -75,8 +134,18 @@ public class KeySetting {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("TAB!!");
-				Snow snow = new Snow(p2, 4);
-				panel.snows.add(snow);
+				
+				String command = "throw";
+				String player = "p2";
+				String snowSpeed = "-3";
+				
+				String params = command + "^" + player + "^" + snowSpeed;
+				
+				try {
+					panel.conn.write(params);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -86,7 +155,19 @@ public class KeySetting {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("a!!");
-				p2.move(-1, 0);
+				
+				String command = "move";
+				String player = "p2";
+				String dx = "-1";
+				String dy = "0";
+				
+				String params = command + "^" + player + "^" + dx + "^" + dy;
+				
+				try {
+					panel.conn.write(params);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -96,7 +177,19 @@ public class KeySetting {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("d!!");
-				p2.move(1, 0);
+				
+				String command = "move";
+				String player = "p2";
+				String dx = "1";
+				String dy = "0";
+				
+				String params = command + "^" + player + "^" + dx + "^" + dy;
+				
+				try {
+					panel.conn.write(params);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -106,7 +199,19 @@ public class KeySetting {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("w!!");
-				p2.move(0, -1);
+				
+				String command = "move";
+				String player = "p2";
+				String dx = "0";
+				String dy = "-1";
+				
+				String params = command + "^" + player + "^" + dx + "^" + dy;
+				
+				try {
+					panel.conn.write(params);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
@@ -116,7 +221,19 @@ public class KeySetting {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("DOWN!!");
-				p2.move(0, 1);
+				
+				String command = "move";
+				String player = "p2";
+				String dx = "0";
+				String dy = "1";
+				
+				String params = command + "^" + player + "^" + dx + "^" + dy;
+				
+				try {
+					panel.conn.write(params);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}

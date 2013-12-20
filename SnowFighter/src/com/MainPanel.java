@@ -26,6 +26,9 @@ public class MainPanel extends JPanel {
 	// 눈들
 	public List<Snow> snows = new LinkedList<Snow>();
 	
+	//서버 커넥터
+	public Connector conn = new Connector(this);
+	
 		
 	Timer timer;
 
