@@ -2,6 +2,7 @@ package obj;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -29,18 +30,23 @@ public class Snow {
 		this.yPos -= this.speed;
 	}
 
-	public void detectCollision(Map<String, Player> players) {
+	public void detectCollision(Map<String, Player> players, List<Snow> snows) {
 
 		for (Entry<String, Player> entry : players.entrySet()) {
 			Player player = entry.getValue();
+			if(this.owner.equals(player)){
+				continue;
+			}
+			
 			// 눈과 대상의 거리를 구한다.
 			int dx = xPos - player.getX();
 			int dy = yPos - player.getY();
 			int dst = (int) Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-			//System.out.println(dst);
+			System.out.println(player.getSize());
 			if (dst <= player.getSize()) {
+				System.out.println(dst);
 				player.isBeaten(this);
-				owner.snows.remove(this);
+				snows.remove(this);
 			} else {
 				// player.setColor(Color.BLUE);
 			}
@@ -53,6 +59,7 @@ public class Snow {
 		g.fillOval(xPos, yPos, width, height);
 		
 		System.out.format("%d %d %d %d", xPos, yPos, width, height);
+		System.out.println();
 	}
 
 	public Player getOwner() {

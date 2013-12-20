@@ -44,8 +44,6 @@ public class Player {
 	private int hp;
 	// 이름
 	private String name;
-	// 눈들
-	public final List<Snow> snows = new LinkedList<Snow>();
 
 	public void isBeaten(Snow snow) {
 		this.hp -= 1;
@@ -128,9 +126,5 @@ public class Player {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<Snow> getSnows() {
-		return snows;
 	}
 }

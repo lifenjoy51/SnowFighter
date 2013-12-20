@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -20,7 +22,10 @@ public class MainPanel extends JPanel {
 
 	// 플레이어
 	public Map<String, Player> players = new HashMap<String, Player>();
-		
+
+	// 눈들
+	public List<Snow> snows = new LinkedList<Snow>();
+	
 		
 	Timer timer;
 
@@ -43,10 +48,11 @@ public class MainPanel extends JPanel {
 				// 돌려돌려
 				for (Entry<String, Player> entry : players.entrySet()) {
 					Player player = entry.getValue(); 
-					for (Snow snow : player.snows) {
+					for (Snow snow : snows) {
 						snow.increase();
-						snow.detectCollision(players);
+						snow.detectCollision(players, snows);
 					}
+					
 					// 플레이어 hp체크
 					if (!player.isAlive()) {
 						System.out.println(player.getName() + " lose");
@@ -57,7 +63,7 @@ public class MainPanel extends JPanel {
 		};
 
 		// 주기적으로 실행 (현재 180ms마다)
-		timer = new Timer(10, listener);
+		timer = new Timer(100, listener);
 		timer.start();
 
 		// 외곽선
@@ -75,7 +81,7 @@ public class MainPanel extends JPanel {
 		for (Entry<String, Player> entry : players.entrySet()) {
 			Player player = entry.getValue(); 
 			player.paint(g);
-			for (Snow snow : player.snows) {
+			for (Snow snow : snows) {
 				snow.paint(g);
 			}
 		}

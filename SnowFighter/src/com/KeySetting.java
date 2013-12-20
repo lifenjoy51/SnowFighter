@@ -22,7 +22,7 @@ public class KeySetting {
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("SPACE!!");
 				Snow snow = new Snow(p1, 5);
-				p1.snows.add(snow);
+				panel.snows.add(snow);
 				System.out.println();
 			}
 		});
@@ -76,7 +76,7 @@ public class KeySetting {
 			public void actionPerformed(ActionEvent ae) {
 				System.out.println("TAB!!");
 				Snow snow = new Snow(p2, 4);
-				p2.snows.add(snow);
+				panel.snows.add(snow);
 			}
 		});
 
