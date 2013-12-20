@@ -4,8 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -18,25 +19,19 @@ import obj.Snow;
 public class MainPanel extends JPanel {
 
 	// 플레이어
-	public Player player;
-	// 상대편
-	public Player opponent;
-
-	// 내가 던지는 눈
-	public List<Snow> snows = new LinkedList<Snow>();
-	// 상대방이 던지는 눈
-	public List<Snow> enemySnows = new LinkedList<Snow>();
-
+	public Map<String, Player> players = new HashMap<String, Player>();
+		
+		
 	Timer timer;
-	
-	
 
 	public MainPanel() {
-		
-		//플레이어 추가
-		player = new Player(100,30,20, Color.RED);
-		//상대편 추가ㅓ
-		opponent = new Player(100,  200, 20, Color.BLUE);
+
+		// 플레이어 추가
+		Player p1 = new Player("lifenjoy51", 1);
+		Player p2 = new Player("osm", 2);
+
+		players.put("p1", p1);
+		players.put("p2", p2);
 
 		// 주기적 실행로직
 		ActionListener listener = new ActionListener() {
@@ -44,22 +39,25 @@ public class MainPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// 다시 그리기 -> paintComponent를 실행한다
 				repaint();
-				//내 눈 움직이기
-				for (Snow snow : snows) {
-					snow.increase();
-					snow.detectCollision(opponent);
+
+				// 돌려돌려
+				for (Entry<String, Player> entry : players.entrySet()) {
+					Player player = entry.getValue(); 
+					for (Snow snow : player.snows) {
+						snow.increase();
+						snow.detectCollision(players);
+					}
+					// 플레이어 hp체크
+					if (!player.isAlive()) {
+						System.out.println(player.getName() + " lose");
+					}
 				}
-				//상대편 눈 움직이기
-				for (Snow snow : enemySnows) {
-					snow.decrease();
-					snow.detectCollision(player);
-				}
-				
+
 			}
 		};
 
 		// 주기적으로 실행 (현재 180ms마다)
-		timer = new Timer(180, listener);
+		timer = new Timer(10, listener);
 		timer.start();
 
 		// 외곽선
@@ -71,22 +69,16 @@ public class MainPanel extends JPanel {
 
 	// 화면 리프레쉬
 	public void paintComponent(Graphics g) {
-		System.out.println("paintComponent");
+		//System.out.println("paintComponent");
 		super.paintComponent(g);
-		//내 캐릭터 그리고
-		player.paint(g);
-		//상대편 캐릭터도 그리고
-		opponent.paint(g);
-		//내가던진 눈 그리고
-		for (Snow snow : snows) {
-			snow.paint(g);
-		}
-		//상대편이 던진 눈 그리고
-		for (Snow snow : enemySnows) {
-			snow.paint(g);
+		// 캐릭터 그리고
+		for (Entry<String, Player> entry : players.entrySet()) {
+			Player player = entry.getValue(); 
+			player.paint(g);
+			for (Snow snow : player.snows) {
+				snow.paint(g);
+			}
 		}
 	}
-
-	
 
 }
